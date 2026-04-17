@@ -1,6 +1,6 @@
 # Sistema de Cálculo de Descontos para Marketplace
 
-## Seu Nome: 
+## Kayler de Freitas Moura
 
 ## Visão Geral do Projeto
 
