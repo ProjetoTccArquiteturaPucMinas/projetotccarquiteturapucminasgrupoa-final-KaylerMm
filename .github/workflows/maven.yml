@@ -1,0 +1,34 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  continuous-integration:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Configurar Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+
+      # 🔹 Etapa 1: Build + testes (clean install)
+      - name: Build + Testes Unitários (clean install)
+        run: mvn clean install
+
+      # 🔹 Etapa 2: Apenas testes unitários
+      - name: Executar Testes Unitários
+        run: mvn test
+
+      # 🔹 Etapa 3: Testes de Arquitetura
+      - name: Executar Testes de Arquitetura
+        run: mvn test -Dtest=ArquiteturaTest
